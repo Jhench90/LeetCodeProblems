@@ -15,7 +15,6 @@ var floodFill = function(image, sr, sc, color) {
         
         //up
         if (image[row-1]) {
-            console.log('up once')
             if (image[row-1][column] === startingPixelColor) {
                 recurse(image, row-1, column)
             }
@@ -34,13 +33,12 @@ var floodFill = function(image, sr, sc, color) {
         }
         //right
         if (image[row][column+1] !== undefined) {
-            console.log('right 4x')
             if (image[row][column+1] === startingPixelColor) {
                 recurse(image, row, column+1)
             }
         }
     }
-    recurse(image, sr, sc)
+    console.log('what does this function return: ', recurse(image, sr, sc))
     return image
 };
 // console.log(floodFill([
