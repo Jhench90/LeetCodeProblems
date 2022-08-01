@@ -1,42 +1,26 @@
-/**
- * // Definition for a Node.
- * function Node(val, neighbors) {
- *    this.val = val === undefined ? 0 : val;
- *    this.neighbors = neighbors === undefined ? [] : neighbors;
- * };
- */
+function cloneGraph(root) {
+    if (root === null) return null
+    let q = []
+    let newMap = {}
+    let oldMap = {}
+    q.push(root)
 
-/**
- * @param {Node} node
- * @return {Node}
- */
-var cloneGraph = function(node) {
-    if (node===null){
-        return null
+    while (q.length > 0) {
+        let node = q.shift()
+        let newNode = new Node(node.val, [])
+        oldMap[node.val] = node
+        newMap[node.val] = newNode
+        node.neighbors.forEach((neighbor)=>{
+            if (newMap[neighbor.val] === undefined) {
+                q.push(neighbor)
+            }
+        })
     }
-  let q = []
-  let map = {}
-  let mapOldNodes = {}
-  q.push(node)
-
-  while (q.length > 0) {
-    let first = q.shift()
-    if (map[first.val] === undefined) {
-      let newNode = new Node(first.val, [])
-      map[first.val] = newNode
-      mapOldNodes[first.val] = first
-      first.neighbors.forEach((neighbor)=>{
-        if (map[neighbor.val] === undefined) {
-          q.push(neighbor)
-        }
-      })
+    for (var key in oldMap) {
+        oldMap[key].neighbors.forEach((neighbor)=>{
+            newMap[key].neighbors.push(newMap[neighbor.val])
+        })
     }
     
-  }
-  for (var k in map) {
-    mapOldNodes[k].neighbors.forEach((neighbor)=>{
-      map[k].neighbors.push(map[neighbor.val])
-    })
-  }
-  return map[1] 
-};
+    return newMap[1]
+}
