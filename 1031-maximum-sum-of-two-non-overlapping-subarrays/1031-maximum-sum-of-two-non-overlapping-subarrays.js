@@ -25,10 +25,7 @@ var maxSumTwoNoOverlap = function(nums, firstLen, secondLen) {
     let max = -Infinity
     for (let i = 0; i < nums.length; i++) {
         let max1 = firstMaxes[i]
-        let max2 = secondMaxes.slice(0, i-firstLen + 1).concat(secondMaxes.slice(i+secondLen)).sort((a,b)=>b-a)[0]
-        // console.log(max1)
-        // console.log(secondMaxes.slice(0, i-firstLen).concat(secondMaxes.slice(i+secondLen)))
-        
+        let max2 = Math.max(...secondMaxes.slice(0, i-firstLen + 1).concat(secondMaxes.slice(i+secondLen)))
         max = Math.max(max, max1 + max2)
     }
     return max
