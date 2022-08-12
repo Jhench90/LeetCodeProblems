@@ -1,7 +1,7 @@
 var maximumSwap = function(num) {
     let arr = []
-    // debugger;
     
+    //generate an array representing the number
     while (num !== 0) {
         let digit = num % 10
         arr.unshift(digit)
@@ -12,14 +12,13 @@ var maximumSwap = function(num) {
             num -= digit
         }   
     }
-    console.log(arr)
-    
-    //loop through arr
-    //if exists a num on the right side larger
-    //swap the largest one on right side
 
+    //loop through the array
+    //if exists a num on right side larger
+    //swap the last largest one on right side
+    //return the joined number
+    
     for (let i = 0; i < arr.length; i++) {
-        // debugger;
         let num1 = arr[i]
         let max = num1
         let maxI
