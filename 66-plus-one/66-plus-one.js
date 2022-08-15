@@ -5,8 +5,8 @@
 var plusOne = function(digits) {
     let carry = 0
     let leftover = 0
-    let i = digits.length - 1 //0
-    let sum = digits[i] + 1 //10
+    let i = digits.length - 1
+    let sum = digits[i] + 1 
     
     if (sum >= 10) {
         calculateCarryAndLeftover()
@@ -14,13 +14,12 @@ var plusOne = function(digits) {
         digits[i] = sum;
     }
     function calculateCarryAndLeftover() {
-        leftover = sum - 10 //0
-        carry = 1 //1
+        leftover = sum - 10
+        carry = 1
         carryHelp()
-    }
-    
+    }    
     function carryHelp() {
-        digits[i] = leftover //[0]
+        digits[i] = leftover
         i-- //-1
         if (i < 0) { 
             sum = carry //1
@@ -31,7 +30,7 @@ var plusOne = function(digits) {
            calculateCarryAndLeftover()
         } else {
             if (i < 0) {
-                digits.unshift(sum) //[1,0]
+                digits.unshift(sum)
             } else {
                 digits[i] = sum;            
             }
