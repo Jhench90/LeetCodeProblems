@@ -9,11 +9,14 @@ var plusOne = function(digits) {
     let sum = digits[i] + 1 //10
     
     if (sum >= 10) {
+        calculateCarryAndLeftover()
+    } else {
+        digits[i] = sum;
+    }
+    function calculateCarryAndLeftover() {
         leftover = sum - 10 //0
         carry = 1 //1
         carryHelp()
-    } else {
-        digits[i] = sum;
     }
     
     function carryHelp() {
@@ -25,9 +28,7 @@ var plusOne = function(digits) {
             sum = digits[i] + carry   
         }
         if (sum >= 10) {
-            leftover = sum - 10
-            carry = 1
-            carryHelp()
+           calculateCarryAndLeftover()
         } else {
             if (i < 0) {
                 digits.unshift(sum) //[1,0]
