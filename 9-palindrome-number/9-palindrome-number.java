@@ -14,12 +14,6 @@ class Solution {
             destructured.add(0, remainder);
             num /= 10;
         }
-        // 121 % 10 = 1
-        // 121 /= 10 = 12
-        // 12 % 10 = 2
-        // 12 / 10 = 1
-        System.out.println("answer is: " + destructured);
-        System.out.println("destructured size: " + destructured.size()/2);
         int i = 0;
         while (i <= destructured.size()/2) {
             System.out.println("i is: " + i);   
