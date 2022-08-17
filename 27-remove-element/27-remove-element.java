@@ -10,3 +10,6 @@ class Solution {
         return i;
     }
 }
+
+//[1, 2, 4, 5, 5] 3
+//          i  j  
