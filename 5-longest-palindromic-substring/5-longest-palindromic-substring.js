@@ -12,7 +12,7 @@ var longestPalindrome = function(s) {
         let word = s[i]
         if (word.length > longest.length) longest = word
         let c = 1
-        let condition = word[0] === word[word.length - 1]
+        let condition = true
         while (condition) {
             let left = s[i-c]
             let right = s[i+c]
@@ -39,7 +39,6 @@ var longestPalindrome = function(s) {
                 let left = s[i-c]
                 let right = s[i+c+1]
                 condition = left === right
-                
                 if (left !== undefined && right !== undefined) {
                      if (left === right) {
                          word = left + word + right
