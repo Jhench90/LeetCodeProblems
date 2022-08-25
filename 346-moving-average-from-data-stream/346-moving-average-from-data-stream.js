@@ -11,8 +11,6 @@ var MovingAverage = function(size) {
  * @return {number}
  */
 MovingAverage.prototype.next = function(val) {
-    console.log('array:', this.array)
-    console.log('size:', this.size)
     if (this.array.length < this.size) {
         this.array.push(val)
     } else {
@@ -22,10 +20,8 @@ MovingAverage.prototype.next = function(val) {
     
     let sum = this.array.reduce((acc, num)=>{
        return acc + num
-    }, 0)   
-    console.log(sum)
+    }, 0)
     return sum / this.array.length
-    //reduce and calc avg
 };
 
 
