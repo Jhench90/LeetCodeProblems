@@ -25,5 +25,6 @@ var romanToInt = function(s) {
     return sum
 };
 
-//time complexity - O(n)
+//time complexity - O(1) (because the constraint of the problem is a max value 
+//of 3999)
 //space complexity - O(1)
