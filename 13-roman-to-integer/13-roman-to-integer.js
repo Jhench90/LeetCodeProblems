@@ -24,3 +24,6 @@ var romanToInt = function(s) {
     }
     return sum
 };
+
+//time complexity - O(n)
+//space complexity - O(1)
