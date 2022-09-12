@@ -28,3 +28,7 @@ var romanToInt = function(s) {
 //time complexity - O(1) (because the constraint of the problem is a max value 
 //of 3999)
 //space complexity - O(1)
+
+//another approach is to set the intermediate symbols in the map
+//this "precomputes" the math operations
+//time and space complexity is the same
