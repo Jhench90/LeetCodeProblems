@@ -11,11 +11,9 @@ var angleClock = function(hour, minutes) {
     
     let hoursDegrees = hour * 30 + minutesDegrees / 12
     
-    let distance = Math.min(Math.abs(minutesDegrees - hoursDegrees), 
-                           Math.abs(hoursDegrees - minutesDegrees))
+    let distance = Math.abs(minutesDegrees - hoursDegrees)
     return distance > 180 ? 360 - distance : distance
 };
-// console.log('expect 76.5, actual: ', angleClock(1, 57))
 
 /*
 Algorithm
