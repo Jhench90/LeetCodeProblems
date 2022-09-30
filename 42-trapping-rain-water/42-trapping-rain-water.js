@@ -10,8 +10,7 @@ var trap = function(height) {
     
     const findMaxes = (array, value, id) => {
          if (value > max) { max = value; }
-         if (id === 1) { array.push(max); }
-         if (id === 2) { array.unshift(max); }
+         array.push(max);
     }
     
     for (let i = 0; i < height.length; i++) {
@@ -23,7 +22,7 @@ var trap = function(height) {
     };
     
     for (let i = 0; i < leftMaxes.length; i++) {
-        let column = Math.min(leftMaxes[i], rightMaxes[i]) - height[i];
+        let column = Math.min(leftMaxes[i], rightMaxes[height.length -1 - i]) - height[i];
         trappedWater += column;
     }
     return trappedWater;
