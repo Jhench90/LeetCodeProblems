@@ -22,8 +22,6 @@ var findPeakElement = function(nums) {
             console.log('right', right);
         }
         mid = Math.floor((left + right) / 2);
-        //if neither of the above is true
-        //the mid 
     }
     return nums[left] < nums[right] ? right : left; 
 };
