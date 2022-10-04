@@ -5,7 +5,31 @@
  * @return {number}
  */
 var ladderLength = function(beginWord, endWord, wordList) {
-    const wordSet = new Set(wordList)
+    let mySet = new Set(wordList);
+    let queue = [beginWord];
+    let count = 1;
+    
+    while(queue.length) {
+        const next = [];
+        for (let word of queue) {
+            if (word === endWord) return count;
+            for (let i = 0; i < word.length; i++) {
+                for (let j = 0; j < 26; j++) {
+                    const newWord = word.slice(0, i) + String.fromCharCode(j + 97) + word.slice(i+1);
+                    if (mySet.has(newWord)) {
+                        next.push(newWord);
+                        mySet.delete(newWord);
+                    }
+                }
+            }
+        }
+        queue = next;
+        count++;
+    }
+    return 0; 
+}
+/* Working Solt from Discuss
+ const wordSet = new Set(wordList)
     let queue = [beginWord];
     let steps = 1;
     
@@ -34,9 +58,12 @@ var ladderLength = function(beginWord, endWord, wordList) {
         queue = next
         steps++;
     }
-    return 0;    
+    return 0; 
     
-    let graph = {};
+ My Solution Does not pass Run Time Complexity
+New Code: Exchanging Arrays for Objects
+var ladderLength = function(beginWord, endWord, wordList) {
+let graph = {};
     createNodeAndIntermediates(beginWord, graph);
     for (let i = 0; i < wordList.length; i++) {
         let word = wordList[i];
@@ -45,8 +72,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
     createConnections(graph);
     
     let shortestSequence = BFS(beginWord, endWord, graph);
-    return shortestSequence === undefined ? 0 : shortestSequence;   
-};
+    return shortestSequence === undefined ? 0 : shortestSequence;
 
 const BFS = (beginWord, endWord, graph) => {
     let queue = [{word: beginWord, count: 0}];
@@ -97,9 +123,8 @@ const createConnections = (graph) => {
         }
     }
 }
-
-/*
 Working Code - Time Limit Exceeded
+Old Code - Contains Arrays instead of objects
 var ladderLength = function(beginWord, endWord, wordList) {
     //create graph and connections
     //only add beginWord to graph, dont add endWord
