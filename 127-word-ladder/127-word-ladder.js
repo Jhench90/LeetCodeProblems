@@ -5,50 +5,37 @@
  * @return {number}
  */
 var ladderLength = function(beginWord, endWord, wordList) {
-    let queue = [beginWord]
-    let level = 1
-    if(!wordList.includes(endWord)){
-        return 0
-    }
-    let map = {}
-    while(queue.length){
-        let diffByOne = []
-        while(queue.length){
-            // console.log(queue)
-            let ele = queue.shift()
-            map[ele] = true
-            let eleChar = ele.split('')
-            for(let i=0;i<wordList.length;i++){
-                let count=0
-                let wordChar = wordList[i].split('')
-                for(let j=0;j<eleChar.length;j++){
-                    if(wordChar[j] !== eleChar[j]){
-                        count++
-                        if(count == 2){
-                            break
-                        }
+    const wordSet = new Set(wordList)
+    let queue = [beginWord];
+    let steps = 1;
+    
+    while(queue.length) {
+        const next = [];
+        
+        // loop over each word in the queue
+        for(let word of queue) {
+            if(word === endWord) return steps;
+            
+            // loop over each char of the word 
+            for(let i = 0; i < word.length; i++) {
+                
+                // and replace the char with letters from [a - z]
+                for(let j = 0; j < 26; j++) {
+                    const newWord = word.slice(0, i) + String.fromCharCode(j + 97) + word.slice(i+1);
+                    
+                    // if the new word exist in the word list add it to the queue
+                    if(wordSet.has(newWord)) {
+                        next.push(newWord);
+                        wordSet.delete(newWord);
                     }
-                }
-                if(count == 1){
-                    if(wordList[i] == endWord){
-                            return level+1
-                       }
-                    if(!map[wordList[i]]){
-                       diffByOne.push(wordList[i])
-                        map[wordList[i]] = true
-                       }
                 }
             }
         }
-        if(diffByOne.length){
-            queue = [...queue,...diffByOne]
-            // for(let i=0;i<diffByOne.length;i++){
-            //     wordList.splice(wordList.indexOf(diffByOne[i]),1)
-            // }
-        }
-       level++ 
+        queue = next
+        steps++;
     }
-    return 0
+    return 0;    
+    
     let graph = {};
     createNodeAndIntermediates(beginWord, graph);
     for (let i = 0; i < wordList.length; i++) {
